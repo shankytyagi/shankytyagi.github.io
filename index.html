@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shaan Tyagi | Shaan Digital — AI, Analytics & Lifestyle Consulting</title>
+    <meta name="description" content="Shaan Tyagi - Shaan Digital. Life-changing ebooks & consulting to improve business using AI & analytics. Expert advice on shopping, gadgets, cars, and courses.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ===== CSS Variables ===== */
+        :root {
+            --gold-100: #f9f0d1;
+            --gold-200: #f4e4bc;
+            --gold-300: #e8d5a3;
+            --gold-400: #d4af37;
+            --gold-500: #c5a028;
+            --gold-600: #b8860b;
+            --gold-700: #9a7209;
+            --gold-800: #7a5a06;
+            --gold-900: #5c4304;
+            --dark-900: #0a0a0a;
+            --dark-800: #121212;
+            --dark-700: #1a1a1a;
+            --dark-600: #222222;
+            --dark-500: #2a2a2a;
+            --dark-400: #333333;
+            --cream: #f5f0e8;
+            --text-light: #e0ddd5;
+            --text-muted: #a09a8e;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            --shadow-gold: 0 4px 30px rgba(212, 175, 55, 0.15);
+            --shadow-gold-strong: 0 8px 40px rgba(212, 175, 55, 0.25);
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* ===== Reset & Base ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--dark-900);
+            color: var(--text-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Ensure content sits above fixed background layers */
+        body > *:not(.bg-gold-animation):not(.bg-particles) {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== Animated Gold Gradient Background ===== */
+        .bg-gold-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 25%, #0a0a0a 50%, #1a1a1a 75%, #0a0a0a 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Gold particle overlay */
+        .bg-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--gold-400);
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleFloat 8s infinite;
+            box-shadow: 0 0 6px var(--gold-400);
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 10s; }
+        .particle:nth-child(2) { left: 25%; animation-delay: 2s; animation-duration: 12s; }
+        .particle:nth-child(3) { left: 40%; animation-delay: 4s; animation-duration: 9s; }
+        .particle:nth-child(4) { left: 55%; animation-delay: 1s; animation-duration: 11s; }
+        .particle:nth-child(5) { left: 70%; animation-delay: 3s; animation-duration: 13s; }
+        .particle:nth-child(6) { left: 85%; animation-delay: 5s; animation-duration: 10s; }
+
+        @keyframes particleFloat {
+            0% { opacity: 0; transform: translateY(100vh) scale(0); }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; transform: translateY(-10vh) scale(1.5); }
+        }
+
+        /* ===== Header / Nav ===== */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        .brand {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--gold-400);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .brand span {
+            color: var(--gold-200);
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: var(--gold-400);
+            transition: width 0.35s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-400);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== Hero ===== */
+        .hero {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+        }
+
+        .hero-eyebrow {
+            display: inline-block;
+            font-size: 0.78rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold-400);
+            margin-bottom: 1.5rem;
+            padding: 0.4rem 1rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 999px;
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.4rem, 5.5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.15;
+            color: var(--cream);
+            margin-bottom: 1.2rem;
+        }
+
+        .hero h1 em {
+            color: var(--gold-400);
+            font-style: italic;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: 0 auto 2.5rem;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            font-weight: 300;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.85rem 1.8rem;
+            border-radius: 6px;
+            font-size: 0.92rem;
+            font-weight: 500;
+            text-decoration: none;
+            letter-spacing: 0.3px;
+            transition: var(--transition);
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold-400), var(--gold-600));
+            color: var(--dark-900);
+            font-weight: 600;
+            box-shadow: var(--shadow-gold);
+        }
+
+        .btn-gold:hover {
+            box-shadow: var(--shadow-gold-strong);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--gold-300);
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-outline:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: var(--gold-400);
+            transform: translateY(-2px);
+        }
+
+        /* ===== Sections ===== */
+        .section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4.5rem 2rem;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-heading h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            color: var(--cream);
+            margin-bottom: 0.8rem;
+        }
+
+        .section-heading p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section-divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold-400), transparent);
+            margin: 1.2rem auto 0;
+        }
+
+        /* ===== Cards Grid ===== */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: linear-gradient(160deg, rgba(34, 34, 34, 0.9), rgba(18, 18, 18, 0.9));
+            border: 1px solid rgba(212, 175, 55, 0.12);
+            border-radius: 12px;
+            padding: 2rem 1.8rem;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold-400);
+            font-size: 1.3rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            color: var(--gold-200);
+            margin-bottom: 0.7rem;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ===== YouTube Channel Section ===== */
+        .yt-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 2rem 4.5rem;
+        }
+
+        .yt-banner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            text-align: center;
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            background:
+                radial-gradient(circle at top left, rgba(212, 175, 55, 0.12), transparent 50%),
+                linear-gradient(160deg, rgba(34, 34, 34, 0.95), rgba(10, 10, 10, 0.95));
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .yt-banner .yt-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #ff0000, #c40000);
+            color: #fff;
+            font-size: 2rem;
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.35);
+        }
+
+        .yt-banner h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            color: var(--cream);
+        }
+
+        .yt-banner p {
+            color: var(--text-muted);
+            max-width: 520px;
+            font-size: 0.95rem;
+        }
+
+        .yt-banner .btn-yt {
+            background: #ff0000;
+            color: #fff;
+            font-weight: 600;
+            padding: 0.9rem 2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 24px rgba(255, 0, 0, 0.3);
+        }
+
+        .yt-banner .btn-yt:hover {
+            background: #e60000;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(255, 0, 0, 0.45);
+        }
+
+        /* ===== Social Links Section ===== */
+        .social-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 2rem 5rem;
+        }
+
+        .social-panel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            background: linear-gradient(160deg, rgba(26, 26, 26, 0.95), rgba(10, 10, 10, 0.95));
+            border: 1px solid rgba(212, 175, 55, 0.18);
+        }
+
+        .social-panel h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--cream);
+            text-align: center;
+        }
+
+        .social-panel .social-sub {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            text-align: center;
+            max-width: 500px;
+            margin-top: -1rem;
+        }
+
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.75rem 1.4rem;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-light);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            transition: var(--transition);
+            min-width: 140px;
+            justify-content: center;
+        }
+
+        .social-link i {
+            font-size: 1.1rem;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            color: var(--dark-900);
+            background: linear-gradient(135deg, var(--gold-400), var(--gold-500));
+            border-color: var(--gold-400);
+            box-shadow: var(--shadow-gold-strong);
+        }
+
+        /* Brand hover colors */
+        .social-link.facebook:hover { background: #1877f2; color: #fff; border-color: #1877f2; }
+        .social-link.youtube:hover { background: #ff0000; color: #fff; border-color: #ff0000; }
+        .social-link.medium:hover { background: #000; color: #fff; border-color: #555; }
+        .social-link.kofi:hover { background: #ff5e5b; color: #fff; border-color: #ff5e5b; }
+
+        /* ===== Footer ===== */
+        .site-footer {
+            border-top: 1px solid rgba(212, 175, 55, 0.12);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            background: rgba(10, 10, 10, 0.6);
+        }
+
+        .site-footer p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .site-footer .footer-brand {
+            color: var(--gold-400);
+            font-weight: 600;
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 720px) {
+            .site-header {
+                flex-direction: column;
+                gap: 0.8rem;
+                padding: 1rem;
+            }
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero {
+                padding: 4rem 1.2rem 3rem;
+            }
+            .section,
+            .yt-section,
+            .social-section {
+                padding-left: 1.2rem;
+                padding-right: 1.2rem;
+            }
+            .social-link {
+                min-width: 120px;
+                padding: 0.65rem 1rem;
+                font-size: 0.82rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background layers -->
+    <div class="bg-gold-animation"></div>
+    <div class="bg-particles" aria-hidden="true">
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header">
+        <a href="#top" class="brand">Shaan <span>Digital</span></a>
+        <nav aria-label="Primary">
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#youtube">YouTube</a></li>
+                <li><a href="#connect">Connect</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="top">
+
+        <!-- Hero -->
+        <section class="hero">
+            <span class="hero-eyebrow">AI · Analytics · Lifestyle</span>
+            <h1>Transform Your Business with <em>AI &amp; Analytics</em></h1>
+            <p>
+                Life-changing ebooks and consulting from Shaan Tyagi — practical advice on
+                shopping, gadgets, cars, and courses, powered by data-driven strategy.
+            </p>
+            <div class="hero-cta">
+                <a class="btn btn-gold" href="#youtube">
+                    <i class="fab fa-youtube"></i> Watch on YouTube
+                </a>
+                <a class="btn btn-outline" href="#connect">
+                    <i class="fas fa-paper-plane"></i> Get in Touch
+                </a>
+            </div>
+        </section>
+
+        <!-- Services -->
+        <section class="section" id="services">
+            <div class="section-heading">
+                <h2>What I Offer</h2>
+                <p>Consulting, courses, and guides designed to grow your business and improve your everyday life.</p>
+                <div class="section-divider"></div>
+            </div>
+            <div class="card-grid">
+                <article class="card">
+                    <div class="card-icon"><i class="fas fa-brain"></i></div>
+                    <h3>AI Consulting</h3>
+                    <p>Implement AI workflows that cut costs and unlock new revenue streams for your business.</p>
+                </article>
+                <article class="card">
+                    <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Analytics Strategy</h3>
+                    <p>Turn raw data into clear decisions with dashboards, KPIs, and actionable insights.</p>
+                </article>
+                <article class="card">
+                    <div class="card-icon"><i class="fas fa-book-open"></i></div>
+                    <h3>Ebooks &amp; Courses</h3>
+                    <p>Practical guides on shopping, gadgets, cars, and business growth — written for real results.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- YouTube Channel -->
+        <section class="yt-section" id="youtube">
+            <div class="yt-banner">
+                <div class="yt-icon"><i class="fab fa-youtube"></i></div>
+                <h2>Watch on the Shaan Digital YouTube Channel</h2>
+                <p>
+                    Deep dives on AI, analytics, gadgets, and lifestyle — new videos every week.
+                    Click below to open the channel directly.
+                </p>
+                <a class="btn-yt"
+                   href="https://www.youtube.com/@ShaanTyagi"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="Open Shaan Tyagi YouTube channel in a new tab">
+                    <i class="fab fa-youtube"></i> Open YouTube Channel
+                </a>
+            </div>
+        </section>
+
+        <!-- Social Links -->
+        <section class="social-section" id="connect">
+            <div class="social-panel">
+                <h2>Connect with Shaan</h2>
+                <p class="social-sub">Follow, subscribe, and support on your favourite platform.</p>
+                <div class="social-links">
+
+                    <a class="social-link facebook"
+                       href="https://www.facebook.com/ShaanDigital"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label="Facebook page">
+                        <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                        <span>Facebook</span>
+                    </a>
+
+                    <a class="social-link youtube"
+                       href="https://www.youtube.com/@ShaanTyagi"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label="YouTube channel">
+                        <i class="fab fa-youtube" aria-hidden="true"></i>
+                        <span>YouTube</span>
+                    </a>
+
+                    <a class="social-link medium"
+                       href="https://medium.com/@shaantyagi"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label="Medium profile">
+                        <i class="fab fa-medium-m" aria-hidden="true"></i>
+                        <span>Medium</span>
+                    </a>
+
+                    <a class="social-link kofi"
+                       href="https://ko-fi.com/shaantyagi"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label="Support on Ko-fi">
+                        <i class="fas fa-mug-hot" aria-hidden="true"></i>
+                        <span>Ko-fi</span>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p><span class="footer-brand">Shaan Digital</span> — AI, Analytics &amp; Lifestyle Consulting</p>
+        <p>&copy; <span id="year"></span> Shaan Tyagi. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Auto-update footer year
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>
